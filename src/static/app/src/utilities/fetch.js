@@ -26,7 +26,8 @@ const getUrl = (url) => {
 export const fetchGet = async (url, params=undefined, callback=undefined) => {
 	const urlSearchParams = new URLSearchParams(params);
 	await fetch(`${getUrl(url)}?${urlSearchParams.toString()}`, {
-		headers: getHeaders()
+		headers: getHeaders(),
+		credentials: 'include'
 	})
 		.then((x) => {
 			const store = DashboardConfigurationStore();
@@ -52,7 +53,8 @@ export const fetchPost = async (url, body, callback) => {
 	await fetch(`${getUrl(url)}`, {
 		headers: getHeaders(),
 		method: "POST",
-		body: JSON.stringify(body)
+		body: JSON.stringify(body).
+		credentials: 'include'
 	}).then((x) => {
 		const store = DashboardConfigurationStore();
 		if (!x.ok){
